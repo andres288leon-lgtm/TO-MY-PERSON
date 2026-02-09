@@ -84,7 +84,7 @@ body{
   100%{ transform:scale(0.9); }
 }
 
-/* Botones */
+/* Botón */
 button{
   margin-top:25px;
   background:none;
@@ -101,11 +101,6 @@ button{
 button:hover{
   background:#c48a8a;
   color:white;
-}
-
-.music-btn{
-  margin-top:15px;
-  font-size:0.85rem;
 }
 
 .hidden{
@@ -136,28 +131,12 @@ button:hover{
 
   <button id="more">Un poco más</button>
 
-  <!-- Botón música -->
-  <button id="musicBtn" class="music-btn hidden">
-    ▶ Escuchar contigo
-  </button>
-
   <!-- Escena 3 -->
   <div id="final" class="text hidden">
     No necesitaba decirte nada hoy…<br><br>
     solo quería que supieras<br>
     que estás presente en mi corazón.
   </div>
-
-  <!-- YouTube player oculto -->
- <iframe
-  id="ytPlayer"
-  width="0"
-  height="0"
-  src=""
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  style="pointer-events:none; position:absolute;">
-</iframe>
 
 </div>
 
@@ -167,13 +146,6 @@ const intro = document.getElementById("intro");
 const message = document.getElementById("message");
 const button = document.getElementById("more");
 const finalText = document.getElementById("final");
-const musicBtn = document.getElementById("musicBtn");
-const ytPlayer = document.getElementById("ytPlayer");
-
-let playing = false;
-
-// Mrs. Magic – video de YouTube
-const songURL = const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1&mute=0&playsinline=1";
 
 heart.addEventListener("click", () => {
   intro.classList.remove("show");
@@ -195,24 +167,9 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     finalText.classList.remove("hidden");
     finalText.classList.add("show");
-    musicBtn.classList.remove("hidden");
-    musicBtn.style.opacity = "1";
   }, 600);
-});
-
-musicBtn.addEventListener("click", () => {
-  if (!playing) {
-    ytPlayer.src = songURL;
-    musicBtn.textContent = "⏸ Quédate un momento";
-    playing = true;
-  } else {
-    ytPlayer.src = "";
-    musicBtn.textContent = "▶ Escuchar contigo";
-    playing = false;
-  }
 });
 </script>
 
 </body>
 </html>
-
