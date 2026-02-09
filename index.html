@@ -40,19 +40,18 @@ body{
 }
 
 .small{
-  font-size:0.9rem;
-  margin-top:12px;
-  color:#7a6a63;
+  position:relative;
+  z-index:10;
+}
+
 }
 
 /* Corazón */
 .heart{
   position:relative;
-  width:100px;
-  height:90px;
-  margin:40px auto;
-  cursor:pointer;
-  animation: beat 2.5s infinite;
+  z-index:10;
+}
+
 }
 
 .heart::before,
@@ -149,15 +148,16 @@ button:hover{
   </div>
 
   <!-- YouTube player oculto -->
-  <iframe
+ <iframe
   id="ytPlayer"
   width="0"
   height="0"
   src=""
   frameborder="0"
   allow="autoplay; encrypted-media"
-  allowfullscreen>
+  style="pointer-events:none; position:absolute;">
 </iframe>
+
 
 </div>
 
@@ -215,3 +215,4 @@ musicBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
