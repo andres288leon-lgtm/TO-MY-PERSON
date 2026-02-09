@@ -21,19 +21,22 @@ body{
   align-items:center;
   text-align:center;
   color:#4a3b35;
+  overflow:hidden;
 }
 
 .container{
   max-width:420px;
   padding:30px;
+  position:relative;
+  z-index:2;
 }
 
 /* Texto */
 .text{
   font-size:1.2rem;
-  line-height:1.7;
+  line-height:1.6;
   opacity:0;
-  transition:opacity 5s ease; /* MUY LENTO */
+  transition:opacity 3s ease;
 }
 
 .text.show{
@@ -46,14 +49,15 @@ body{
   color:#7a6a63;
 }
 
-/* Corazón */
+/* Corazón principal */
 .heart{
   position:relative;
   width:100px;
   height:90px;
   margin:40px auto;
   cursor:pointer;
-  animation: beat 7s infinite; /* LATIDO MUY CALMADO */
+  animation: beat 4.5s infinite;
+  z-index:2;
 }
 
 .heart::before,
@@ -80,23 +84,67 @@ body{
 }
 
 @keyframes beat{
-  0%{ transform:scale(0.92); }
+  0%{ transform:scale(0.9); }
   50%{ transform:scale(1); }
-  100%{ transform:scale(0.92); }
+  100%{ transform:scale(0.9); }
+}
+
+/* Corazones flotantes */
+.floating-heart{
+  position:absolute;
+  width:18px;
+  height:16px;
+  opacity:0.7;
+  animation: floatUp 12s linear forwards;
+}
+
+.floating-heart::before,
+.floating-heart::after{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:14px;
+  background:#d6a5a5;
+  border-radius:9px 9px 0 0;
+  top:0;
+}
+
+.floating-heart::before{
+  left:9px;
+  transform:rotate(-45deg);
+  transform-origin:0 100%;
+}
+
+.floating-heart::after{
+  left:0;
+  transform:rotate(45deg);
+  transform-origin:100% 100%;
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(0) scale(0.8);
+    opacity:0;
+  }
+  10%{ opacity:0.6; }
+  100%{
+    transform:translateY(-120vh) scale(1.2);
+    opacity:0;
+  }
 }
 
 /* Botón */
 button{
-  margin-top:30px;
+  margin-top:25px;
   background:none;
   border:1px solid #c48a8a;
-  padding:12px 26px;
+  padding:10px 20px;
   border-radius:30px;
   font-size:0.9rem;
   color:#4a3b35;
   cursor:pointer;
   opacity:0;
-  transition:opacity 4s ease, background 1s; /* MUY SUAVE */
+  transition:opacity 2.5s ease, background 0.6s;
 }
 
 button:hover{
@@ -114,7 +162,6 @@ button:hover{
 
 <div class="container">
 
-  <!-- Escena 1 -->
   <div id="intro" class="text show">
     No es una fecha especial…<br><br>
     …pero pensé en ti.
@@ -123,7 +170,6 @@ button:hover{
   <div id="heart" class="heart"></div>
   <div class="small">Tócalo</div>
 
-  <!-- Escena 2 -->
   <div id="message" class="text hidden">
     A veces no hay nada que celebrar,<br>
     y aun así, todo se siente bonito.<br><br>
@@ -132,7 +178,6 @@ button:hover{
 
   <button id="more">Un poco más</button>
 
-  <!-- Escena 3 -->
   <div id="final" class="text hidden">
     No necesitaba decirte nada hoy…<br><br>
     solo quería que supieras<br>
@@ -148,15 +193,30 @@ const message = document.getElementById("message");
 const button = document.getElementById("more");
 const finalText = document.getElementById("final");
 
+function createFloatingHeart(){
+  const h = document.createElement("div");
+  h.className = "floating-heart";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.bottom = "-20px";
+  document.body.appendChild(h);
+
+  setTimeout(() => h.remove(), 12000);
+}
+
 heart.addEventListener("click", () => {
   intro.classList.remove("show");
   heart.style.display = "none";
+
+  // Lluvia suave de corazones
+  for(let i=0; i<18; i++){
+    setTimeout(createFloatingHeart, i * 500);
+  }
 
   setTimeout(() => {
     message.classList.remove("hidden");
     message.classList.add("show");
     button.style.opacity = "1";
-  }, 2200); // PAUSA LARGA
+  }, 1800);
 });
 
 button.addEventListener("click", () => {
@@ -166,7 +226,7 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     finalText.classList.remove("hidden");
     finalText.classList.add("show");
-  }, 2400); // MUY TRANQUILO
+  }, 1600);
 });
 </script>
 
