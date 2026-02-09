@@ -31,9 +31,9 @@ body{
 /* Texto */
 .text{
   font-size:1.2rem;
-  line-height:1.6;
+  line-height:1.7;
   opacity:0;
-  transition:opacity 1s ease; /* MÁS LENTO */
+  transition:opacity 5s ease; /* MUY LENTO */
 }
 
 .text.show{
@@ -53,7 +53,7 @@ body{
   height:90px;
   margin:40px auto;
   cursor:pointer;
-  animation: beat 4.5s infinite; /* LATIDO MÁS CALMADO */
+  animation: beat 7s infinite; /* LATIDO MUY CALMADO */
 }
 
 .heart::before,
@@ -80,23 +80,23 @@ body{
 }
 
 @keyframes beat{
-  0%{ transform:scale(0.9); }
+  0%{ transform:scale(0.92); }
   50%{ transform:scale(1); }
-  100%{ transform:scale(0.9); }
+  100%{ transform:scale(0.92); }
 }
 
 /* Botón */
 button{
-  margin-top:25px;
+  margin-top:30px;
   background:none;
   border:1px solid #c48a8a;
-  padding:10px 20px;
+  padding:12px 26px;
   border-radius:30px;
   font-size:0.9rem;
   color:#4a3b35;
   cursor:pointer;
   opacity:0;
-  transition:opacity 2.5s ease, background 0.5s; /* MÁS SUAVE */
+  transition:opacity 4s ease, background 1s; /* MUY SUAVE */
 }
 
 button:hover{
@@ -156,9 +156,7 @@ heart.addEventListener("click", () => {
     message.classList.remove("hidden");
     message.classList.add("show");
     button.style.opacity = "1";
-  }, 1800); // PAUSA MÁS LARGA
-
-  if (navigator.vibrate) navigator.vibrate(50);
+  }, 2200); // PAUSA LARGA
 });
 
 button.addEventListener("click", () => {
@@ -168,10 +166,9 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     finalText.classList.remove("hidden");
     finalText.classList.add("show");
-  }, 1100); // TRANSICIÓN MÁS LENTA
+  }, 2400); // MUY TRANQUILO
 });
 </script>
 
 </body>
 </html>
-
