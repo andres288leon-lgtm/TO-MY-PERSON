@@ -137,7 +137,9 @@ button:hover{
   <button id="more">Un poco más</button>
 
   <!-- Botón música -->
- 
+  <button id="musicBtn" class="music-btn hidden">
+    ▶ Escuchar contigo
+  </button>
 
   <!-- Escena 3 -->
   <div id="final" class="text hidden">
@@ -147,7 +149,14 @@ button:hover{
   </div>
 
   <!-- YouTube player oculto -->
- 
+  <iframe
+    id="ytPlayer"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
 
 </div>
 
@@ -157,11 +166,13 @@ const intro = document.getElementById("intro");
 const message = document.getElementById("message");
 const button = document.getElementById("more");
 const finalText = document.getElementById("final");
-
+const musicBtn = document.getElementById("musicBtn");
+const ytPlayer = document.getElementById("ytPlayer");
 
 let playing = false;
 
 // Mrs. Magic – video de YouTube
+const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1";
 
 heart.addEventListener("click", () => {
   intro.classList.remove("show");
@@ -188,7 +199,15 @@ button.addEventListener("click", () => {
   }, 600);
 });
 
-
+musicBtn.addEventListener("click", () => {
+  if (!playing) {
+    ytPlayer.src = songURL;
+    musicBtn.textContent = "⏸ Quédate un momento";
+    playing = true;
+  } else {
+    ytPlayer.src = "";
+    musicBtn.textContent = "▶ Escuchar contigo";
+    playing = false;
   }
 });
 </script>
