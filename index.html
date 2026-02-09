@@ -150,13 +150,14 @@ button:hover{
 
   <!-- YouTube player oculto -->
   <iframe
-    id="ytPlayer"
-    width="0"
-    height="0"
-    src=""
-    frameborder="0"
-    allow="autoplay">
-  </iframe>
+  id="ytPlayer"
+  width="0"
+  height="0"
+  src=""
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
 
 </div>
 
@@ -172,7 +173,7 @@ const ytPlayer = document.getElementById("ytPlayer");
 let playing = false;
 
 // Mrs. Magic – video de YouTube
-const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1";
+const songURL = const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1&mute=0&playsinline=1";
 
 heart.addEventListener("click", () => {
   intro.classList.remove("show");
