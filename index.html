@@ -40,18 +40,19 @@ body{
 }
 
 .small{
-  position:relative;
-  z-index:10;
-}
-
+  font-size:0.9rem;
+  margin-top:12px;
+  color:#7a6a63;
 }
 
 /* Corazón */
 .heart{
   position:relative;
-  z-index:10;
-}
-
+  width:100px;
+  height:90px;
+  margin:40px auto;
+  cursor:pointer;
+  animation: beat 2.5s infinite;
 }
 
 .heart::before,
@@ -136,9 +137,7 @@ button:hover{
   <button id="more">Un poco más</button>
 
   <!-- Botón música -->
-  <button id="musicBtn" class="music-btn hidden">
-    ▶ Escuchar contigo
-  </button>
+ 
 
   <!-- Escena 3 -->
   <div id="final" class="text hidden">
@@ -148,16 +147,7 @@ button:hover{
   </div>
 
   <!-- YouTube player oculto -->
- <iframe
-  id="ytPlayer"
-  width="0"
-  height="0"
-  src=""
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  style="pointer-events:none; position:absolute;">
-</iframe>
-
+ 
 
 </div>
 
@@ -167,13 +157,11 @@ const intro = document.getElementById("intro");
 const message = document.getElementById("message");
 const button = document.getElementById("more");
 const finalText = document.getElementById("final");
-const musicBtn = document.getElementById("musicBtn");
-const ytPlayer = document.getElementById("ytPlayer");
+
 
 let playing = false;
 
 // Mrs. Magic – video de YouTube
-const songURL = const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1&mute=0&playsinline=1";
 
 heart.addEventListener("click", () => {
   intro.classList.remove("show");
@@ -200,19 +188,10 @@ button.addEventListener("click", () => {
   }, 600);
 });
 
-musicBtn.addEventListener("click", () => {
-  if (!playing) {
-    ytPlayer.src = songURL;
-    musicBtn.textContent = "⏸ Quédate un momento";
-    playing = true;
-  } else {
-    ytPlayer.src = "";
-    musicBtn.textContent = "▶ Escuchar contigo";
-    playing = false;
+
   }
 });
 </script>
 
 </body>
 </html>
-
