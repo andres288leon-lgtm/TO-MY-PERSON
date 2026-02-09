@@ -33,7 +33,7 @@ body{
   font-size:1.2rem;
   line-height:1.6;
   opacity:0;
-  transition:opacity 3s ease; /* MÁS LENTO */
+  transition:opacity 1s ease; /* MÁS LENTO */
 }
 
 .text.show{
@@ -96,7 +96,7 @@ button{
   color:#4a3b35;
   cursor:pointer;
   opacity:0;
-  transition:opacity 2.5s ease, background 0.6s; /* MÁS SUAVE */
+  transition:opacity 2.5s ease, background 0.5s; /* MÁS SUAVE */
 }
 
 button:hover{
@@ -156,7 +156,7 @@ heart.addEventListener("click", () => {
     message.classList.remove("hidden");
     message.classList.add("show");
     button.style.opacity = "1";
-  }, 1500); // PAUSA MÁS LARGA
+  }, 1800); // PAUSA MÁS LARGA
 
   if (navigator.vibrate) navigator.vibrate(50);
 });
@@ -168,9 +168,10 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     finalText.classList.remove("hidden");
     finalText.classList.add("show");
-  }, 1400); // TRANSICIÓN MÁS LENTA
+  }, 1100); // TRANSICIÓN MÁS LENTA
 });
 </script>
 
 </body>
 </html>
+
