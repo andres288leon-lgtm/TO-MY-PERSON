@@ -28,11 +28,12 @@ body{
   padding:30px;
 }
 
+/* Texto */
 .text{
   font-size:1.2rem;
   line-height:1.6;
   opacity:0;
-  transition:opacity 1.5s ease;
+  transition:opacity 3s ease; /* MÁS LENTO */
 }
 
 .text.show{
@@ -52,7 +53,7 @@ body{
   height:90px;
   margin:40px auto;
   cursor:pointer;
-  animation: beat 2.5s infinite;
+  animation: beat 4.5s infinite; /* LATIDO MÁS CALMADO */
 }
 
 .heart::before,
@@ -95,7 +96,7 @@ button{
   color:#4a3b35;
   cursor:pointer;
   opacity:0;
-  transition:opacity 1s ease, background 0.3s;
+  transition:opacity 2.5s ease, background 0.6s; /* MÁS SUAVE */
 }
 
 button:hover{
@@ -155,7 +156,7 @@ heart.addEventListener("click", () => {
     message.classList.remove("hidden");
     message.classList.add("show");
     button.style.opacity = "1";
-  }, 800);
+  }, 1500); // PAUSA MÁS LARGA
 
   if (navigator.vibrate) navigator.vibrate(50);
 });
@@ -167,7 +168,7 @@ button.addEventListener("click", () => {
   setTimeout(() => {
     finalText.classList.remove("hidden");
     finalText.classList.add("show");
-  }, 600);
+  }, 1400); // TRANSICIÓN MÁS LENTA
 });
 </script>
 
