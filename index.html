@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para ti</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Georgia, serif;
+}
+
+body{
+  height:100vh;
+  background: linear-gradient(180deg, #f6f1ec, #efe6de);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#4a3b35;
+}
+
+.container{
+  max-width:420px;
+  padding:30px;
+}
+
+.text{
+  font-size:1.2rem;
+  line-height:1.6;
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.text.show{
+  opacity:1;
+}
+
+.small{
+  font-size:0.9rem;
+  margin-top:12px;
+  color:#7a6a63;
+}
+
+/* Corazón */
+.heart{
+  position:relative;
+  width:100px;
+  height:90px;
+  margin:40px auto;
+  cursor:pointer;
+  animation: beat 2.5s infinite;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:50px;
+  height:80px;
+  background:#c48a8a;
+  border-radius:50px 50px 0 0;
+  top:0;
+}
+
+.heart::before{
+  left:50px;
+  transform:rotate(-45deg);
+  transform-origin:0 100%;
+}
+
+.heart::after{
+  left:0;
+  transform:rotate(45deg);
+  transform-origin:100% 100%;
+}
+
+@keyframes beat{
+  0%{ transform:scale(0.9); }
+  50%{ transform:scale(1); }
+  100%{ transform:scale(0.9); }
+}
+
+/* Botones */
+button{
+  margin-top:25px;
+  background:none;
+  border:1px solid #c48a8a;
+  padding:10px 20px;
+  border-radius:30px;
+  font-size:0.9rem;
+  color:#4a3b35;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity 1s ease, background 0.3s;
+}
+
+button:hover{
+  background:#c48a8a;
+  color:white;
+}
+
+.music-btn{
+  margin-top:15px;
+  font-size:0.85rem;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Escena 1 -->
+  <div id="intro" class="text show">
+    No es una fecha especial…<br><br>
+    …pero pensé en ti.
+  </div>
+
+  <div id="heart" class="heart"></div>
+  <div class="small">Tócalo</div>
+
+  <!-- Escena 2 -->
+  <div id="message" class="text hidden">
+    A veces no hay nada que celebrar,<br>
+    y aun así, todo se siente bonito.<br><br>
+    Eso me pasa cuando pienso en ti.
+  </div>
+
+  <button id="more">Un poco más</button>
+
+  <!-- Botón música -->
+  <button id="musicBtn" class="music-btn hidden">
+    ▶ Escuchar contigo
+  </button>
+
+  <!-- Escena 3 -->
+  <div id="final" class="text hidden">
+    No necesitaba decirte nada hoy…<br><br>
+    solo quería que supieras<br>
+    que estás presente en mi corazón.
+  </div>
+
+  <!-- YouTube player oculto -->
+  <iframe
+    id="ytPlayer"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
+
+</div>
+
+<script>
+const heart = document.getElementById("heart");
+const intro = document.getElementById("intro");
+const message = document.getElementById("message");
+const button = document.getElementById("more");
+const finalText = document.getElementById("final");
+const musicBtn = document.getElementById("musicBtn");
+const ytPlayer = document.getElementById("ytPlayer");
+
+let playing = false;
+
+// Mrs. Magic – video de YouTube
+const songURL = "https://www.youtube.com/embed/5j8t0f8wQ3U?autoplay=1";
+
+heart.addEventListener("click", () => {
+  intro.classList.remove("show");
+  heart.style.display = "none";
+
+  setTimeout(() => {
+    message.classList.remove("hidden");
+    message.classList.add("show");
+    button.style.opacity = "1";
+  }, 800);
+
+  if (navigator.vibrate) navigator.vibrate(50);
+});
+
+button.addEventListener("click", () => {
+  message.classList.remove("show");
+  button.style.display = "none";
+
+  setTimeout(() => {
+    finalText.classList.remove("hidden");
+    finalText.classList.add("show");
+    musicBtn.classList.remove("hidden");
+    musicBtn.style.opacity = "1";
+  }, 600);
+});
+
+musicBtn.addEventListener("click", () => {
+  if (!playing) {
+    ytPlayer.src = songURL;
+    musicBtn.textContent = "⏸ Quédate un momento";
+    playing = true;
+  } else {
+    ytPlayer.src = "";
+    musicBtn.textContent = "▶ Escuchar contigo";
+    playing = false;
+  }
+});
+</script>
+
+</body>
+</html>
